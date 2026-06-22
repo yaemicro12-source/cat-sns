@@ -60,8 +60,11 @@ $sql = "SELECT num, tweet, day, time
 
 	<title>Project app</title>
 	<!-- Bootstrap -->
+     
+    <!-- ユーザーのヘッダー画像を表示 -->
 	<img class="header_img" src="<?php echo $header; ?>">
         <p></p>
+    <!-- ユーザーのアイコン画像、名前、ユーザーID、プロフィールを表示 -->
 	<table>
 	    <td><img class="img-responsive" src="<?php echo $aikon; ?>" width="40" height="40"></td>
 	    <td><h1><?php echo $name; ?></h1></td>
@@ -72,18 +75,18 @@ $sql = "SELECT num, tweet, day, time
 
 <style>
 		
-	body{
+	body{                                                                       /* ページ全体の背景色と文字色を設定 */                                                                                        
 		padding:20px;
 		padding-bottom:60px;
 		background-color:#E6E6E6;
 		color:#502613;
 	}
 
-    .profile{
+    .profile{                                                                   /* プロフィールの文字色を変更 */    
         margin-top:5px;
     }
 	
-	button{
+	button{                                                                     /* ボタンの背景色、文字色、サイズ、形を設定 */
 	    background-color:#FFdbed;
 	    color:#502613;
             outline:none;
@@ -92,43 +95,43 @@ $sql = "SELECT num, tweet, day, time
 	    border-radius:10%;
 	      }
 	
-	.img-responsive{
+	.img-responsive{                                                             /* アイコン画像を丸く表示 */                                                                                                
 	    border-radius:50%;
-	    widrh:40px;
+	    width:40px;
 	    height:40px;
 	}
 	
-	.id{
+	.id{                                                                         /* ユーザーIDの文字色を変更 */
 	    color:#B8C0F2;
 	}
     
-      .post_box{
-           background-color:white;
-           width:280px;
-           border:1px solid #eee;
-           margin:20px auto;
-           padding:10px;
-       }
+    .post_box{                                                                  /* 投稿内容を表示するボックスの背景色、サイズ、余白、内側の余白を設定 */
+        background-color:white;
+        width:280px;
+        border:1px solid #eee;
+        margin:20px auto;
+        padding:10px;
+    }
 
-       .aikon{
-           width:50px;
-           height:50px;
-           border-radius:50%;
-          border:1px solid #dde;
-       }
+    .aikon{                                                                     /* 投稿者のアイコン画像を丸く表示 */
+        width:50px;
+        height:50px;
+        border-radius:50%;
+        border:1px solid #dde;
+    }
 
-       .post_plof{
-           margin-bottom:10px;
-       }
+    .post_plof{                                                                 /* 投稿者のプロフィールを表示するテーブルの下の余白を設定 */
+       margin-bottom:10px;
+    }
 	
-	footer{
+	footer{                                                                     /* フッターを画面 */
 	    position:fixed;
 	    bottom:0;
 	    left:0;
 	    width:100%;
 	}
     
-    .header_img{
+    .header_img{                                                                /* ユーザーのヘッダー画像を画面いっぱいに表示 */
         width:100%;
         
         height:150px;
@@ -155,6 +158,7 @@ $sql = "SELECT num, tweet, day, time
             <table class="post_plof">
                 <tr>
                     <td>
+                        <!-- 投稿者のアイコンを表示 -->
                         <img class="aikon" src="<?php echo $aikon; ?>">
                     </td>
                     <td>

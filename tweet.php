@@ -1,14 +1,15 @@
+<!--投稿入力画面-->
 <?php 
 session_start();
 require 'db.php';
 
-    if(!isset($_SESSION['user_id'])){
+    if(!isset($_SESSION['user_id'])){                                # セッション内にuser_idが無い場合はログインページに強制遷移    
         header("Location: login.php");
         exit;
     }
-date_default_timezone_set('Asia/Tokyo');
+date_default_timezone_set('Asia/Tokyo');                             # タイムゾーンを日本時間に設定
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if($_SERVER["REQUEST_METHOD"] == "POST"){                            # 投稿ボタンが押された場合、投稿内容をDBに保存する
 
     $tweet = $_POST["tweet"];
     $user_id = $_SESSION["user_id"];
@@ -71,9 +72,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </style>
 
 <body>
-    <p>投稿する</p>
+    <p>投稿する</p>                                                      
     <p></p>
-    <form method = "post">
+    <!-- 投稿内容を入力するフォーム -->
+    <form method = "post">                                           
         <textarea name = "tweet"  rows = "5" col= "600" maxlength ="500"></textarea>
         <p></p>
         <button type = "submit">投稿</button>

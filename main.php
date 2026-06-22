@@ -1,7 +1,9 @@
+<!-- メインページ -->
 <?php
 session_start();
 require 'db.php';
 
+# post.user_id とusers.id が同じユーザー同士を結び付ける
 $sql = "SELECT post.user_id, post.tweet, post.day, post.time, users.name, users.aikon
         FROM post
         JOIN users
@@ -77,28 +79,24 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
       <h1>メインページ</h1>
 
-        <?php foreach($posts as $post){ ?>
+        <?php foreach($posts as $post){ ?>                                    <!-- 投稿がある場合、foreachで投稿を1件ずつ表示する -->
 
         <div class="post_box">
         <table class="post_plof">
         <tr>
             <td>
-                <img class="aikon" src="<?php echo $post['aikon']; ?>">
+                <img class="aikon" src="<?php echo $post['aikon']; ?>">     <!-- 投稿者のアイコンを表示 -->
             </td>
             <td>
-                 <a href="user.php?id=<?php echo $post['user_id']; ?>">
+                 <a href="user.php?id=<?php echo $post['user_id']; ?>">     <!-- 投稿者の名前をクリックすると、ユーザーのプロフィールページに遷移する -->
                  <?php echo $post['name']; ?>
                  </a>
-                <p class="id">
-                <a href="user.php?id=<?php echo $post['user_id']; ?>">
-                @<?php echo $post['user_id']; ?>
-               </a>
-</p>
+                <p class="id">@<?php echo $post['user_id']; ?></p>          <!-- 投稿者のユーザーIDを表示 -->
             </td>
         </tr>
         </table>
 
-        <p><?php echo $post['tweet']; ?></p>
+        <p><?php echo $post['tweet']; ?></p>                                <!-- 投稿内容を表示 -->
             <small>
                 <?php echo $post['day']; ?>
                 <?php echo $post['time']; ?>
