@@ -1,3 +1,4 @@
+<!-- ログインページ -->
 <?php
     session_start();
     require'db.php';
@@ -57,29 +58,32 @@
     <h1>ログイン</h1>
 
         <form method = "POST">
-        <input type = "text" name = "request_id" placeholder= "idを入力してください">
+        <input type = "text" name = "request_id" placeholder= "idを入力してください">					<!-- ユーザーID入力欄 -->
         <p></p>
-        <input type = "text" name = "pass" size = "30" placeholder= "パスワードを入力してください">
+        <input type = "text" name = "pass" size = "30" placeholder= "パスワードを入力してください">       <!--パスワード入力欄 -->
         <button class ="registaration" type = "submit">送信</button>
         <?php
-            $request_id = isset($_POST["request_id"]) ? $_POST["request_id"] : "";
-	    $pass = isset($_POST["pass"]) ? $_POST["pass"] : "";
+            $request_id = isset($_POST["request_id"]) ? $_POST["request_id"] : "";					  # ユーザーIDがPOSTされているか確認し、されていれば$request_idに代入、されていなければ空文字を代入
+	    	$pass = isset($_POST["pass"]) ? $_POST["pass"] : "";									  # パスワードがPOSTされているか確認し、されていれば$passに代入、されていなければ空文字を代入
          ?>
         </form>
+
 	<?php
 		if($_SERVER["REQUEST_METHOD"]=="POST"){
-                $sql = "SELECT pass,id FROM users WHERE id = ?";
+                $sql = "SELECT pass,id 
+						FROM users 
+						WHERE id = ?";
 
-               $stmt = $pdo->prepare($sql);
-               $stmt->execute([$request_id]);
+            	$stmt = $pdo->prepare($sql);
+            	$stmt->execute([$request_id]);
 
-              $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            	$user = $stmt->fetch(PDO::FETCH_ASSOC);				                                  # DBから取得したユーザー情報を取り出して使えるように保存
 
-		    if($user && $user['pass'] == $pass){
+		    if($user && $user['pass'] == $pass){													  # ユーザー情報が存在し、かつ入力されたパスワードとDBのパスワードが一致する場合
     		        echo "ログイン成功";
-    		        $_SESSION['user_id']=$user['id'];
-			 header("Location: plof.php");
-     　　　　　exit;
+    		        $_SESSION['user_id']=$user['id'];												  # セッションにユーザーIDを保存
+					header("Location: plof.php");
+     				exit;
 		    }else{
     		        echo "ログイン失敗";
 		    }

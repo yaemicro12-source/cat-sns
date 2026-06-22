@@ -1,3 +1,4 @@
+<!-- プロフィール編集 -->
 <?php
 session_start();
 require 'db.php';
@@ -7,10 +8,10 @@ if(!isset($_SESSION['user_id'])){
     exit;
 }
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if($_SERVER["REQUEST_METHOD"] == "POST"){                              # ユーザーがプロフィール編集フォームを送信した場合
 
-    $name = $_POST["name"];
-    $profile = $_POST["profile"];
+    $name = $_POST["name"];                                            # ユーザーが入力した名前を取得        
+    $profile = $_POST["profile"];                                      # ユーザーが入力した自己紹介を取得
 
     $sql = "UPDATE users
             SET name = ?, profile = ?
@@ -20,7 +21,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $stmt->execute([
         $name,
         $profile,
-        $_SESSION['user_id']
+        $_SESSION['user_id']                                           # セッション内のuser_idを使って、ログイン中のユーザーのプロフィールを更新
     ]);
 
     header("Location: plof.php");
@@ -34,7 +35,7 @@ $sql = "SELECT name, profile
 $stmt = $pdo->prepare($sql);
 $stmt->execute([$_SESSION['user_id']]);
 
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);                              # DBから取得したユーザー情報を取り出して使えるように保存
 ?>
 
 <!DOCTYPE html>
@@ -54,14 +55,14 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
 <style>
-    body{
+    body{                                                            /* ページ全体のスタイル */
 	padding:20px;
 	padding-bottom:60px;
 	background-color:#E6E6E6;
 	color:#502613;
 	}
 
-	button{
+	button{                                                          /* ボタンのスタイル */
 	            background-color:#FFdbed;
 	    	    color:#502613;
             	    outline:none;
@@ -70,7 +71,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 	    	    border-radius:10%;
 	      }
 
-	.change_aikon{
+	.change_aikon{                                                   /* ランダムアイコン変更ボタンのスタイル */
 		    border-radius:0;
 		    width:auto;
 		    height:auto;
@@ -78,7 +79,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 	    	    color:#502613;
           }
 
-        footer{
+        footer{                                                      /* フッターのスタイル */   
 	    position:fixed;
 	    bottom:0;
 	    left:0;
@@ -90,18 +91,18 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 <body>    
     <h1>プロフィール編集</h1>
         <button class="change_aikon" onclick="location.href='http://localhost/randomaikon.php'">ランダムにアイコンを変更する</button>
-    <p>　</p>
+    <p></p>
 
   <form method="post">
 
-    <p>ここに名前を入力してください</p>
+    <p>ここに名前を入力してください</p>                                            <!-- 名前入力欄 -->
     <input type="text"
        name="name"
        value="<?php echo $user['name']; ?>">
 
     <p></p>
 
-    <p>ここに自己紹介を入力してください</p>
+    <p>ここに自己紹介を入力してください</p>                                          <!-- 自己紹介入力欄 -->
     <textarea name="profile"
           rows="3"
           cols="40"

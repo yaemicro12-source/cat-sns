@@ -1,8 +1,9 @@
+<!-- アカウント作成 -->
 <?php
     require'db.php';
     $sql = "INSERT INTO users
                 VALUES(?,?,?,?,?)";
-    $stmt =$pdo ->prepare($sql);
+    $stmt =$pdo ->prepare($sql);                                                 #SQL文を準備
   
 ?>
 
@@ -24,23 +25,23 @@
 
 <style>
     body{
-	padding:20px;
-	padding-bottom:60px;
-	background-color:#E6E6E6;
-	color:#502613;
+	    padding:20px;
+	    padding-bottom:60px;
+	    background-color:#E6E6E6;
+	    color:#502613;
 	}
 
 	button{
-	            background-color:#FFdbed;
-	    	    color:#502613;
-            	    outline:none;
-	    	    width:auto;
-	    	    height:auto;
-	    	    border-radius:10%;
-	      }
+	    background-color:#FFdbed;
+	    color:#502613;
+        outline:none;
+	    width:auto;
+	    height:auto;
+	    border-radius:10%;
+	}
 
 
-        footer{
+    footer{
 	    position:fixed;
 	    bottom:0;
 	    left:0;
@@ -52,44 +53,45 @@
 <body>    
     <h1>プロフィール登録</h1>
         <button onclick="location.href='http://localhost/randomaikon.php'">ランダムにアイコンを変更する</button>
-    <p>　</p>
+    <p></p>
 
        
         <form method = "POST">
         <input type = "text" name = "id" placeholder= "idを入力してください">
         <p></p>
         <input type = "text" name = "pass" size = "30" placeholder= "パスワードを入力してください">
-	<p></p>
+	    <p></p>
         <input type = "text" name = "name" placeholder= "名前を入力してください">
-	<p></p>
+	    <p></p>
     	<p><br></p>
 
-        <p>あなたについて自由にかいてみましょう</p>
+        <p>あなたについて自由にかいてみましょう</p>                                                 <!--自己紹介の入力-->                         
         <textarea name = "profile"  rows = "3" col = "40" maxlength ="120"></textarea>
         <button class ="registaration" type = "submit">登録</button>
+
         <?php
-            $id = isset($_POST["id"]) ? $_POST["id"] : "";
-	    $pass = isset($_POST["pass"]) ? $_POST["pass"] : "";
+            $id = isset($_POST["id"]) ? $_POST["id"] : "";                       #idがPOSTされているか確認し、されていれば$idに代入、されていなければ空文字を代入
+	        $pass = isset($_POST["pass"]) ? $_POST["pass"] : "";
             $name = isset($_POST["name"]) ? $_POST["name"] : "";
-	    $profile = isset($_POST["profile"]) ? $_POST["profile"] : "";
-	   $aikon = isset($_SESSION['user_aikon']) ? $_SESSION['user_aikon'] : "cat0.png";
-           $stmt -> execute([$id, $pass, $name, $profile, $aikon]);
+	        $profile = isset($_POST["profile"]) ? $_POST["profile"] : "";
+	        $aikon = isset($_SESSION['user_aikon']) ? $_SESSION['user_aikon'] : "cat0.png";
+            $stmt -> execute([$id, $pass, $name, $profile, $aikon]);
          
-            if ($id !== "" && $pass !== "") {
-               $auto_message = "今日から始めるよ！";
+            if ($id !== "" && $pass !== "") {                                    #idとパスワードが空でない場合に自動で投稿を行う
+                $auto_message = "今日から始めるよ！";
 
-          $day = date("Y-m-d");
-          $time = date("H:i");
+                $day = date("Y-m-d");                                            #日付を取得
+                $time = date("H:i");                                             #時間を取得
 
-          $sql_post = "INSERT INTO post (user_id, tweet, day, time)
-             VALUES (?, ?, ?, ?)";
+            $sql_post = "INSERT INTO post (user_id, tweet, day, time)            #SQLインジェクション対策のためにプレースホルダーを使用
+                         VALUES (?, ?, ?, ?)";
 
-               $stmt_post = $pdo->prepare($sql_post);
-               $stmt_post->execute([
-                   $id,
-                   $auto_message,
-                   $day,
-                   $time
+            $stmt_post = $pdo->prepare($sql_post);
+            $stmt_post->execute([
+                $id,
+                $auto_message,
+                $day,
+                $time
                ]);
 	    }
          ?>
