@@ -1,9 +1,10 @@
+<!-- ユーザープロフィール -->
 <?php
     session_start();
     require 'db.php';
-    $id = $_GET['id'];
+    $id = $_GET['id'];                                                          # URLからユーザーIDを取得
 
-    if(!isset($_SESSION['user_id'])){
+    if(!isset($_SESSION['user_id'])){                                           # セッション内にuser_idが無い場合はログインページに強制遷移
         header("Location: login.php");
         exit;
     }
@@ -19,9 +20,9 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $name = $user['name'];
 $profile = $user['profile'];
-$aikon = $user['aikon'];
+$aikon = $user['aikon'];                                                        # ユーザーのアイコン画像のファイル名を取得
 
-    if($aikon == "cat1.png"){
+    if($aikon == "cat1.png"){                                                   # ユーザーのアイコン画像に応じてヘッダー画像を変更
         $header = "header1.png";
     }elseif($aikon == "cat2.png"){
         $header = "header2.png";
@@ -37,6 +38,7 @@ $aikon = $user['aikon'];
         $header = "header1.png";
     }
 
+# ユーザーidに紐づく投稿をDBから取得し、降順に並べ替える
 $sql = "SELECT num, tweet, day, time
         FROM post
         WHERE user_id = ?
@@ -147,7 +149,7 @@ $sql = "SELECT num, tweet, day, time
 
 <?php }else{ ?>
 
-    <?php foreach($posts as $post){ ?>
+    <?php foreach($posts as $post){ ?>                                             <!-- 投稿がある場合、foreachで投稿を1件ずつ表示する -->
 
         <div class="post_box">
             <table class="post_plof">
@@ -156,7 +158,7 @@ $sql = "SELECT num, tweet, day, time
                         <img class="aikon" src="<?php echo $aikon; ?>">
                     </td>
                     <td>
-                        <span><?php echo $name; ?></span>
+                        <span><?php echo $name; ?></span>                           <!-- 投稿者の名前を表示 -->
                         <p class="id">@<?php echo $_SESSION['user_id']; ?></p>
                     </td>
                 </tr>
@@ -164,7 +166,7 @@ $sql = "SELECT num, tweet, day, time
 
             <p><?php echo $post['tweet']; ?></p>
 
-<small>
+<small>                                                                             <!-- 投稿日時を小さく表示 -->
     <?php echo $post['day']; ?>
     <?php echo $post['time']; ?>
 </small>
