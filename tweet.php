@@ -80,7 +80,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){                            # 投稿ボ
         <p></p>
         <button type = "submit">投稿</button>
 	<p></p>
-    <td><button onclick="location.href='http://localhost/plof.php'">プロフィール</button></td>
+    <td><button onclick="location.href='https://cat-sns.sakura.ne.jp/plof.php'">プロフィール</button></td>
     </form>
 
 </body>

@@ -186,10 +186,10 @@ $sql = "SELECT num, tweet, day, time
 <footer>
     <table>
         <tr>
-        <td><button onclick="location.href='http://localhost/main.php'">メインページ</button></td>
-        <td><button onclick="location.href='http://localhost/edit_prof.php'">プロフィール編集</button></td>
-	<td><button onclick="location.href='http://localhost/tweet.php'">投稿する</button></td>
-	<button onclick="location.href='http://localhost/logout.php'">ログアウト</button>
+        <td><button onclick="location.href='https://cat-sns.sakura.ne.jp/main.php'">メインページ</button></td>
+        <td><button onclick="location.href='https://cat-sns.sakura.ne.jp/edit_profile.php'">プロフィール編集</button></td>
+	    <td><button onclick="location.href='https://cat-sns.sakura.ne.jp/tweet.php'">投稿する</button></td>
+	    <td><button onclick="location.href='https://cat-sns.sakura.ne.jp/logout.php'">ログアウト</button></td>
      </table>
         </tr>
 </footer>

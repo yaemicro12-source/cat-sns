@@ -52,7 +52,7 @@
 
 <body>    
     <h1>プロフィール登録</h1>
-        <button onclick="location.href='http://localhost/randomaikon.php'">ランダムにアイコンを変更する</button>
+        <button onclick="location.href='https://cat-sns.sakura.ne.jp/randomaikon.php'">ランダムにアイコンを変更する</button>
     <p></p>
 
        
@@ -98,7 +98,7 @@
 	</form>
     
     <footer >
-	    <button type="button" onclick="location.href='http://localhost/main.php'">メインページ</button>
+	    <button type="button" onclick="location.href='https://cat-sns.sakura.ne.jp/main.php'">メインページ</button>
     </footer>
 
 </body>

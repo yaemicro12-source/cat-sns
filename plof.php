@@ -1,3 +1,4 @@
+<!-- ユーザープロフィール -->
 <?php
     session_start();
     require 'db.php';
@@ -16,9 +17,9 @@ $stmt->execute([$_SESSION['user_id']]);
 
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$name = $user['name'];
+$name = $user['name'];                                  # ユーザーの名前、自己紹介、アイコン画像のファイル名を取得
 $profile = $user['profile'];
-$aikon = $user['aikon'];
+$aikon = $user['aikon'];                                # ユーザーのアイコン画像のファイル名に応じてヘッダー画像を変更
 
     if($aikon == "cat1.png"){
         $header = "header1.png";
@@ -69,18 +70,16 @@ $sql = "SELECT num, tweet, day, time
 
 <style>
 		
-	body{
+	body{                                               /* ページ全体の背景色と文字色を設定 */  
 		padding:20px;
 		padding-bottom:60px;
 		background-color:#E6E6E6;
 		color:#502613;
 	}
 
-    .profile{
-        margin-top:5px;
-    }
+ 
 	
-	button{
+	button{                                             /* ボタンの背景色、文字色、枠線、角丸を設定 */
 	    background-color:#FFdbed;
 	    color:#502613;
             outline:none;
@@ -89,17 +88,17 @@ $sql = "SELECT num, tweet, day, time
 	    border-radius:10%;
 	      }
 	
-	.img-responsive{
+	.img-responsive{                                    /* アイコン画像の角丸、サイズを設定 */
 	    border-radius:50%;
-	    widrh:40px;
+	    width:40px;
 	    height:40px;
 	}
 	
-	.id{
+	.id{                                               /* ユーザーIDの文字色を設定 */
 	    color:#B8C0F2;
 	}
     
-      .post_box{
+      .post_box{                                       /* 投稿ボックスの設定 */
            background-color:white;
            width:280px;
            border:1px solid #eee;
@@ -107,25 +106,25 @@ $sql = "SELECT num, tweet, day, time
            padding:10px;
        }
 
-       .aikon{
+       .aikon{                                          /* 投稿ボックス内のアイコン画像の設定 */
            width:50px;
            height:50px;
            border-radius:50%;
           border:1px solid #dde;
        }
 
-       .post_plof{
+       .post_plof{                                      /* 投稿ボックス内の投稿者情報の余白を設定 */    
            margin-bottom:10px;
        }
 	
-	footer{
+	footer{                                             /* フッターの位置を固定 */
 	    position:fixed;
 	    bottom:0;
 	    left:0;
 	    width:100%;
 	}
     
-    .header_img{
+    .header_img{                                        /* ヘッダー画像の表示設定 */
         width:100%;
         
         height:150px;
@@ -135,7 +134,7 @@ $sql = "SELECT num, tweet, day, time
         border-radius:10px;
     }
 
-.delete{
+.delete{                                               /* 投稿削除ボタンの設定 */
     width:auto;
     height:auto;
     padding:3px 8px;
@@ -148,17 +147,34 @@ $sql = "SELECT num, tweet, day, time
     text-align:right ;
     margin-top:5px;
 }
+
+.profile{         
+    
+    text-align: left;
+    background-color:rgba(255,255,255,0.6);
+    padding:15px;
+    border-radius:10px;
+
+    width:90%;
+    margin-left:0;
+    margin-right:auto;
+}
+
+.logout_button{
+    background-color:#204FB4;
+    text-align: right;
+}
 	
 </style>
 <body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     	<p></p>
-<?php if(count($posts) == 0){ ?>
+<?php if(count($posts) == 0){ ?>                        <!-- 投稿がない場合のメッセージを表示 -->
 
     <p>まだ投稿がありません</p>
 
-<?php }else{ ?>
+<?php }else{ ?>                                         <!-- 投稿がある場合、foreachで投稿を1件ずつ表示する -->
 
     <?php foreach($posts as $post){ ?>
 
@@ -197,10 +213,10 @@ $sql = "SELECT num, tweet, day, time
 <footer>
     <table>
         <tr>
-        <td><button onclick="location.href='http://localhost/main.php'">メインページ</button></td>
-        <td><button onclick="location.href='http://localhost/edit_prof.php'">プロフィール編集</button></td>
-	<td><button onclick="location.href='http://localhost/tweet.php'">投稿する</button></td>
-	<button onclick="location.href='http://localhost/logout.php'">ログアウト</button>
+        <td><button onclick="location.href='https://cat-sns.sakura.ne.jp/main.php'">メインページ</button></td>
+        <td><button onclick="location.href='https://cat-sns.sakura.ne.jp/edit_profile.php'">プロフィール編集</button></td>
+	    <td><button onclick="location.href='https://cat-sns.sakura.ne.jp/tweet.php'">投稿する</button></td>
+	    <td><button class ="logout_button" onclick="location.href='https://cat-sns.sakura.ne.jp/logout.php'">ログアウト</button></td>
      </table>
         </tr>
 </footer>

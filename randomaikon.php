@@ -101,9 +101,9 @@ if(isset($_POST["decision"])){                                  # 決定ボタ�
     <footer>
             <table>
             <tr>
-	    <td><button onclick="location.href='http://localhost/main.php'">メインページ</button></td>
-            <td><button onclick="location.href='http://localhost/plof.php'">プロフィール</button></td>
-	    <td><button onclick="location.href='http://localhost/edit_plof.php'">プロフィール編集</button></td>
+	        <td><button onclick="location.href='https://cat-sns.sakura.ne.jp/main.php'">メインページ</button></td>
+            <td><button onclick="location.href='https://cat-sns.sakura.ne.jp/profile.php'">プロフィール</button></td>
+	        <td><button onclick="location.href='https://cat-sns.sakura.ne.jp/edit_profile.php'">プロフィール編集</button></td>
             </tr>
          </table>
     </footer>

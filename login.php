@@ -92,9 +92,9 @@
     <p></p>
     
 <footer>
-    <button onclick="location.href='http://localhost/make_id.php'">登録がまだの方はこちら</button>
+    <button onclick="location.href='https://cat-sns.sakura.ne.jp/make_id.php'">登録がまだの方はこちら</button>
      <p></p>
-    <td><button onclick="location.href='http://localhost/main.php'">メインページ</button></td>
+    <td><button onclick="location.href='https://cat-sns.sakura.ne.jp/main.php'">メインページ</button></td>
 </footer>
 </body>
 

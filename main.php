@@ -109,9 +109,9 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <footer>
             <table>
             <tr>
-	    <td><button onclick="location.href='http://localhost/plof.php'">プロフィール</button></td>
-            <td><button onclick="location.href='http://localhost/tweet.php'">投稿する</button></td>
-            <button onclick="location.href='http://localhost/main.php'">更新</button>
+	    <td><button onclick="location.href='https://cat-sns.sakura.ne.jp/profile.php'">プロフィール</button></td>
+            <td><button onclick="location.href='https://cat-sns.sakura.ne.jp/tweet.php'">投稿する</button></td>
+            <button onclick="location.href='https://cat-sns.sakura.ne.jp/main.php'">更新</button>
             </tr>
          </table>
     </footer>
